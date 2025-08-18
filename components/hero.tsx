@@ -1,8 +1,18 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Download, Mail } from "lucide-react"
 import Image from "next/image"
+import { useRef } from "react"
 
 export function Hero() {
+  const handleContactClick = () => {
+    const contactSection = document.getElementById("contact")
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+
   return (
     <section
       id="home"
@@ -18,14 +28,26 @@ export function Hero() {
               MERN Stack Developer & Caffeine Addict ✅
             </h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl">
-              A caffeine addict armed with React, Python, Node, and C++. I don’t just write codeI focus on solving problems, building reliable systems, and creating digital experiences that truly work for people.
+              A caffeine addict armed with React, Python, Node, and C++. I don’t just write code —
+              I focus on solving problems, building reliable systems, and creating digital experiences that truly work for people.
             </p>
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Button size="lg" className="animate-pulse-glow">
-                <Download className="mr-2 h-5 w-5" />
-                Download CV
-              </Button>
-              <Button variant="outline" size="lg">
+              {/* Download CV Button */}
+              <a
+                href="/cv.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                download
+              >
+                <Button size="lg" className="animate-pulse-glow">
+                  <Download className="mr-2 h-5 w-5" />
+                  Download CV
+                </Button>
+              </a>
+
+              {/* Contact Me Button */}
+              <Button variant="outline" size="lg" onClick={handleContactClick}>
                 <Mail className="mr-2 h-5 w-5" />
                 Contact Me
               </Button>

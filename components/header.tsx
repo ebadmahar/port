@@ -28,7 +28,9 @@ export function Header() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
-            <h1 className="text-xl font-bold text-primary font-heading">Ebad ur Rehman</h1>
+            <a href="#home" className="text-xl font-bold text-primary font-heading hover:underline">
+  Ebad ur Rehman
+</a>
           </div>
 
           {/* Desktop Navigation */}
