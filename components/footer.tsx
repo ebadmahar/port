@@ -1,12 +1,13 @@
-import { Github, Linkedin, Twitter, Mail } from "lucide-react"
+
+import { Github, Linkedin, Instagram, Mail } from "lucide-react"
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
 
   const socialLinks = [
-    { icon: Github, href: "#", label: "GitHub" },
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
-    { icon: Twitter, href: "#", label: "Twitter" },
+    { icon: Github, href: "https://github.com/ebadmahar", label: "GitHub" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/ebad-mahar-178572275", label: "LinkedIn" },
+    { icon: Instagram, href: "https://instagram.com/ebadmahar", label: "Instagram" },
     { icon: Mail, href: "ebad520477@gmail.com", label: "Email" },
   ]
 

@@ -1,6 +1,9 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { ExternalLink, Github } from "lucide-react"
 import Image from "next/image"
+import { useToast } from "@/hooks/use-toast"
 
 interface Project {
   id: number
@@ -23,41 +26,39 @@ const projects: Project[] = [
     liveUrl: "https://nufconsultant.netlify.app/",
     githubUrl: "https://github.com/ebadmahar/Nuf-Consultant-Site",
   },
-
-
   {
     id: 2,
-    title: "Updating Soon",
+    title: "CovenantInteriors",
     description:
-      "Updating Soon",
-    image: "/",
-    technologies: ["Updating Soon"],
-    liveUrl: "#",
+      "Interior design & construction company with 15+ years of experience in project management, renovations, and architectural services.",
+    image: "/covenantinteriors-ca-1920x1080desktop-bb0ab0.png",
+    technologies: ["PHP", "Wordpress","Elementor"],
+    liveUrl: "https://covenantinteriors.ca/",
     githubUrl: "#",
   },
   {
     id: 3,
-    title: "Updating Soon",
-    description:
-      "Updating Soon",
-    image: "/",
-    technologies: ["Updating Soon"],
-    liveUrl: "#",
+    title: "Prime Aura property",
+    description: "Real estate platform for buying, selling, and renting properties, mainly focused in Georgia.",
+    image: "/PrimeAuraProperty-com-1920x1080desktop-e18d17.png",
+    technologies: ["PHP", "Wordpress","Elementor"],
+    liveUrl: "https://primeauraproperty.com/",
     githubUrl: "#",
   },
   {
     id: 4,
-    title: "Updating Soon",
-    description:
-      "Updating Soon",
-    image: "/",
-    technologies: ["Updating Soon"],
-    liveUrl: "#",
+    title: "Repair Hub",
+    description: "A home and office maintenance service platform offering expert solutions across electrical, plumbing, AC and fridge repair, appliance servicing, solar installation, painting, and carpentry, all focused on ease and customer satisfaction.",
+    image: "/repairhubservices-com-1024x768desktop-f71e8d.png",
+    technologies: ["PHP", "Wordpress","Elementor"],
+    liveUrl: "https://repairhubservices.com/",
     githubUrl: "#",
   },
 ]
 
 export function Projects() {
+  const { toast } = useToast()
+
   return (
     <section id="projects" className="py-20 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -83,35 +84,76 @@ export function Projects() {
                 </div>
 
                 <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-3 font-heading text-card-foreground">{project.title}</h3>
-                  <p className="text-muted-foreground mb-4 leading-relaxed">{project.description}</p>
+                  <h3 className="text-xl font-semibold mb-3 font-heading text-card-foreground">
+                    {project.title}
+                  </h3>
+                  <p className="text-muted-foreground mb-4 leading-relaxed">
+                    {project.description}
+                  </p>
 
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.technologies.map((tech) => (
-                      <span key={tech} className="px-3 py-1 bg-muted text-muted-foreground text-sm rounded-full">
+                      <span
+                        key={tech}
+                        className="px-3 py-1 bg-muted text-muted-foreground text-sm rounded-full"
+                      >
                         {tech}
                       </span>
                     ))}
                   </div>
 
-<div className="flex space-x-3">
-  {project.liveUrl && (
-    <Button asChild size="sm" className="flex-1">
-      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-        <ExternalLink className="mr-2 h-4 w-4" />
-        Live Demo
-      </a>
-    </Button>
-  )}
-  {project.githubUrl && (
-    <Button asChild variant="outline" size="sm" className="flex-1 bg-transparent">
-      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-        <Github className="mr-2 h-4 w-4" />
-        Code
-      </a>
-    </Button>
-  )}
-</div>
+                  <div className="flex space-x-3">
+                    {project.liveUrl && (
+                      <Button asChild size="sm" className="flex-1">
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <ExternalLink className="mr-2 h-4 w-4" />
+                          Live Demo
+                        </a>
+                      </Button>
+                    )}
+
+                    {/* Code Button Handling */}
+                    {project.githubUrl && (
+                      project.id === 1 ? (
+                        <Button
+                          asChild
+                          variant="outline"
+                          size="sm"
+                          className="flex-1 bg-transparent"
+                        >
+                          <a
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <Github className="mr-2 h-4 w-4" />
+                            Code
+                          </a>
+                        </Button>
+                      ) : (
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="flex-1 bg-transparent"
+                          onClick={() =>
+                            toast({
+                              title: "Restricted",
+                              description:
+                                "Can't Show the Code Due to Privacy of the Owners.",
+                              variant: "destructive",
+                            })
+                          }
+                        >
+                          <Github className="mr-2 h-4 w-4" />
+                          Code
+                        </Button>
+                      )
+                    )}
+                  </div>
                 </div>
               </div>
             ))}
