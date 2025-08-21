@@ -1,4 +1,3 @@
-
 import { Github, Linkedin, Instagram, Mail } from "lucide-react"
 
 export function Footer() {
